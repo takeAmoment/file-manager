@@ -1,7 +1,13 @@
 import process, { stdin, argv } from 'process'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
 
 const USERNAME_START_POSTFIX = '--'
 const GREETING = 'Welcome to the File Manager'
+
+const __fileName = fileURLToPath(import.meta.url)
+const __dirname = dirname(__fileName)
+
 
 const checkCommand = (command) => {
   switch (true) {
@@ -9,13 +15,17 @@ const checkCommand = (command) => {
       console.log('os command')
       break
     default:
-      console.log('This command does not exist', command)
+      console.log('Invalid input', command)
   }
 }
 
 const closeProcess = (userName) => {
   console.log(`\nThank you for using File Manager, ${userName}, goodbye!`)
   process.exit(0)
+}
+
+const printCurrentDir = () => {
+  console.log(`You are currently in ${__dirname}`)
 }
 
 const handleInput = (data, userName) => {
@@ -26,6 +36,8 @@ const handleInput = (data, userName) => {
   } else {
     checkCommand(formatedData)
   }
+
+  printCurrentDir()
 }
 
 const startFileManager = async () => {
@@ -34,6 +46,7 @@ const startFileManager = async () => {
       .find((item) => item.startsWith(USERNAME_START_POSTFIX))
       .split('=')[1]
     console.log(`\n${GREETING}, ${userName}!`)
+    printCurrentDir()
 
     stdin.on('data', (data) => handleInput(data, userName))
 
