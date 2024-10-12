@@ -1,23 +1,8 @@
 import process, { stdin, argv } from 'process'
-import { fileURLToPath } from 'url'
-import { dirname } from 'path'
+import { checkCommand } from './utils/utils.js'
 
 const USERNAME_START_POSTFIX = '--'
 const GREETING = 'Welcome to the File Manager'
-
-const __fileName = fileURLToPath(import.meta.url)
-const __dirname = dirname(__fileName)
-
-
-const checkCommand = (command) => {
-  switch (true) {
-    case command.startsWith('os'):
-      console.log('os command')
-      break
-    default:
-      console.log('Invalid input', command)
-  }
-}
 
 const closeProcess = (userName) => {
   console.log(`\nThank you for using File Manager, ${userName}, goodbye!`)
@@ -25,7 +10,7 @@ const closeProcess = (userName) => {
 }
 
 const printCurrentDir = () => {
-  console.log(`You are currently in ${__dirname}`)
+  console.log(`You are currently in ${process.cwd()}`)
 }
 
 const handleInput = (data, userName) => {
