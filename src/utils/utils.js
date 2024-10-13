@@ -1,6 +1,9 @@
+import { access, constants } from 'fs/promises'
+
 import { changeDirectory } from '../navigation/changeDirectory.js'
 import { getList } from '../navigation/getList.js'
 import { moveUp } from '../navigation/moveUp.js'
+import { readFile } from '../fs/readFile.js'
 
 
 export const parseCommand = (command) => {
@@ -24,7 +27,19 @@ export const checkCommand = (command) => {
     case 'ls': 
       getList()
       break
+    case 'cat':
+    readFile(commandArgs)
+    break
     default:
-      console.log('Invalid input:', command)
+      console.error('Invalid input:', command)
+  }
+}
+
+export const checkIsFileExist = async (filePath) => {
+  try {
+    await access(filePath, constants.F_OK)
+    return true
+  } catch (error) {
+    return false
   }
 }
