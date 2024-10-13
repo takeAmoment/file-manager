@@ -9,7 +9,7 @@ export const provideOSInfo = async (commandArgs) => {
   const argument = commandArgs[0].slice(2)
 
   switch (argument) {
-    case 'eol':
+    case 'EOL':
       const result = JSON.stringify(os.EOL)
       console.log(`EOL: ${result}`)
       break

@@ -14,7 +14,7 @@ const printCurrentDir = () => {
 }
 
 const handleInput = (data, userName) => {
-  const formatedData = data.toString().toLocaleLowerCase().trim()
+  const formatedData = data.toString().trim()
 
   if (formatedData === '.exit') {
     closeProcess(userName)

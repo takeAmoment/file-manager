@@ -11,6 +11,7 @@ import { copyFile } from '../fs/copyFile.js'
 import { moveFile } from '../fs/moveFile.js'
 import { removeFile } from '../fs/removeFile.js'
 import { provideOSInfo } from '../os/provideOSInfo.js'
+import { calculateHash } from '../hash/calculateHash.js'
 
 export const parseCommand = (command) => {
   const commandArr = command.split(' ')
@@ -53,6 +54,9 @@ export const checkCommand = (command) => {
       break
     case 'os':
       provideOSInfo(commandArgs)
+      break
+    case 'hash':
+      calculateHash(commandArgs)
       break
     default:
       console.error('Invalid input:', command)
