@@ -4,6 +4,7 @@ import { changeDirectory } from '../navigation/changeDirectory.js'
 import { getList } from '../navigation/getList.js'
 import { moveUp } from '../navigation/moveUp.js'
 import { readFile } from '../fs/readFile.js'
+import { createFile } from '../fs/createFile.js'
 
 
 export const parseCommand = (command) => {
@@ -30,6 +31,9 @@ export const checkCommand = (command) => {
     case 'cat':
     readFile(commandArgs)
     break
+    case 'add':
+      createFile(commandArgs)
+      break
     default:
       console.error('Invalid input:', command)
   }
