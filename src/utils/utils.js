@@ -12,6 +12,8 @@ import { moveFile } from '../fs/moveFile.js'
 import { removeFile } from '../fs/removeFile.js'
 import { provideOSInfo } from '../os/provideOSInfo.js'
 import { calculateHash } from '../hash/calculateHash.js'
+import { compressFile } from '../zlib/compressFile.js'
+import { decompressFile } from '../zlib/decompressFile.js'
 
 export const parseCommand = (command) => {
   const commandArr = command.split(' ')
@@ -58,6 +60,12 @@ export const checkCommand = (command) => {
     case 'hash':
       calculateHash(commandArgs)
       break
+    case 'compress':
+      compressFile(commandArgs)
+      break
+    case 'decompress':
+      decompressFile(commandArgs)
+      break
     default:
       console.error('Invalid input:', command)
   }
@@ -88,3 +96,4 @@ export const createFilePath = (workingDirectory, filePath) => {
 
   return fullFilePath
 }
+
