@@ -5,6 +5,7 @@ import { getList } from '../navigation/getList.js'
 import { moveUp } from '../navigation/moveUp.js'
 import { readFile } from '../fs/readFile.js'
 import { createFile } from '../fs/createFile.js'
+import { renameFile } from '../fs/renameFile.js'
 
 
 export const parseCommand = (command) => {
@@ -33,6 +34,9 @@ export const checkCommand = (command) => {
     break
     case 'add':
       createFile(commandArgs)
+      break
+    case 'rn':
+      renameFile(commandArgs)
       break
     default:
       console.error('Invalid input:', command)
