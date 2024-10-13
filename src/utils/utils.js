@@ -1,4 +1,5 @@
 import { changeDirectory } from '../navigation/changeDirectory.js'
+import { getList } from '../navigation/getList.js'
 import { moveUp } from '../navigation/moveUp.js'
 
 
@@ -19,6 +20,9 @@ export const checkCommand = (command) => {
       break
     case 'cd':
       changeDirectory(commandArgs)
+      break
+    case 'ls': 
+      getList()
       break
     default:
       console.log('Invalid input:', command)
