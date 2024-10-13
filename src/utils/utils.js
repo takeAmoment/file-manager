@@ -10,6 +10,7 @@ import { renameFile } from '../fs/renameFile.js'
 import { copyFile } from '../fs/copyFile.js'
 import { moveFile } from '../fs/moveFile.js'
 import { removeFile } from '../fs/removeFile.js'
+import { provideOSInfo } from '../os/provideOSInfo.js'
 
 export const parseCommand = (command) => {
   const commandArr = command.split(' ')
@@ -49,6 +50,9 @@ export const checkCommand = (command) => {
       break
     case 'rm':
       removeFile(commandArgs)
+      break
+    case 'os':
+      provideOSInfo(commandArgs)
       break
     default:
       console.error('Invalid input:', command)
