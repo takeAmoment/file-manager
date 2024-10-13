@@ -8,6 +8,7 @@ import { readFile } from '../fs/readFile.js'
 import { createFile } from '../fs/createFile.js'
 import { renameFile } from '../fs/renameFile.js'
 import { copyFile } from '../fs/copyFile.js'
+import { moveFile } from '../fs/moveFile.js'
 
 export const parseCommand = (command) => {
   const commandArr = command.split(' ')
@@ -41,6 +42,9 @@ export const checkCommand = (command) => {
       break
     case 'cp':
       copyFile(commandArgs)
+      break
+    case 'mv':
+      moveFile(commandArgs)
       break
     default:
       console.error('Invalid input:', command)

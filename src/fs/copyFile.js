@@ -52,4 +52,6 @@ export const copyFile = async (commandArgs) => {
       console.log(`${OPERATION_FAILED_MESSAGE}. ${error}`);
     }
   }
+
+  return fullFilePath
 }
