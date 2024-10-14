@@ -1,4 +1,5 @@
 import process, { stdin, argv } from 'process'
+
 import { checkCommand } from './utils/utils.js'
 
 const USERNAME_START_POSTFIX = '--'
@@ -30,21 +31,23 @@ const startFileManager = async () => {
     const userName = argv
       .find((item) => item.startsWith(USERNAME_START_POSTFIX))
       .split('=')[1]
-    console.log(`\n${GREETING}, ${userName}!`)
+    const formattedUserName = userName.slice(0, 1).toLocaleUpperCase() + userName.slice(1)
+
+    console.log(`\n${GREETING}, ${formattedUserName}!`)
     printCurrentDir()
 
-    stdin.on('data', (data) => handleInput(data, userName))
+    stdin.on('data', (data) => handleInput(data, formattedUserName))
 
     stdin.on('error', (err) => {
       console.error(err)
     })
 
     process.on('SIGINT', () => {
-      closeProcess(userName)
+      closeProcess(formattedUserName)
     })
   } catch (error) {
     console.error(`Sorry something went wrong: ${error}`)
-    process.exit(0)
+    process.exit(1)
   }
 }
 
