@@ -1,9 +1,7 @@
 import { access, constants } from 'fs/promises'
 import path from 'path'
 
-import { changeDirectory } from '../navigation/changeDirectory.js'
-import { getList } from '../navigation/getList.js'
-import { moveUp } from '../navigation/moveUp.js'
+import { changeDirectory, getList, moveUp } from '../navigation/index.js'
 import { readFile } from '../fs/readFile.js'
 import { createFile } from '../fs/createFile.js'
 import { renameFile } from '../fs/renameFile.js'
@@ -28,13 +26,13 @@ export const checkCommand = (command) => {
 
   switch (commandName) {
     case 'up':
-      moveUp()
+      moveUp(commandArgs)
       break
     case 'cd':
       changeDirectory(commandArgs)
       break
     case 'ls':
-      getList()
+      getList(commandArgs)
       break
     case 'cat':
       readFile(commandArgs)

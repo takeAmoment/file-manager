@@ -8,7 +8,12 @@ const getRootDir = () => {
   return '/'
 }
 
-export const moveUp = () => {
+export const moveUp = (commandArgs) => {
+  if(commandArgs.length !== 0) {
+    console.error('Invalid input')
+    return
+  }
+  
   const currentDir = process.cwd()
   const rootDir = getRootDir()
 
