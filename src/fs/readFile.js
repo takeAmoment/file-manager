@@ -1,19 +1,19 @@
 import { createReadStream } from 'fs'
-import { join } from 'path'
+import path from 'path'
 import process from 'process'
 
-import { checkIsFileExist } from '../utils/utils.js'
+import { checkIsFileExist, createFilePath } from '../utils/utils.js'
 import { OPERATION_FAILED_MESSAGE } from '../variables/common.js'
 
 export const readFile = async (commandArgs) => {
-  if(commandArgs.length > 1) {
+  if(commandArgs.length !== 1) {
     console.error('Invalid input')
     return
   }
+  const workingDirectory = process.cwd()
+  const sourcePath = path.normalize(commandArgs[0])
 
-  const fileName = commandArgs[0]
-  const dirName = process.cwd()
-  const filePath = join(dirName, fileName)
+  const filePath = createFilePath(workingDirectory, sourcePath)
   let result = ''
 
   try { 
@@ -38,7 +38,7 @@ export const readFile = async (commandArgs) => {
       console.log('Result:\n', result)
     })
   } catch (error) {
-    
+    console.error(`${OPERATION_FAILED_MESSAGE}. ${error}`)
   }
 
 }
