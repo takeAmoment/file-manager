@@ -1,19 +1,19 @@
 import process from 'process'
-import { join } from 'path'
+import path from 'path'
 import { writeFile } from 'fs/promises'
 
-import { checkIsFileExist } from '../utils/utils.js'
+import { checkIsFileExist, createFilePath } from '../utils/utils.js'
 import { OPERATION_FAILED_MESSAGE } from '../variables/common.js'
 
 export const createFile = async (commandArgs) => {
-  if(commandArgs.length > 1) {
+  if(commandArgs.length !== 1) {
     console.error('Invalid input')
     return
   }
 
-  const fileName = commandArgs[0]
-  const dirName = process.cwd()
-  const filePath = join(dirName, fileName)
+  const workingDirectory = process.cwd()
+  const sourcePath = path.normalize(commandArgs[0])
+  const filePath = createFilePath(workingDirectory, sourcePath)
 
   try {
     const isFileExist = await checkIsFileExist(filePath)
@@ -25,6 +25,6 @@ export const createFile = async (commandArgs) => {
     
     writeFile(filePath, '')
   } catch (error) {
-    console.error(OPERATION_FAILED_MESSAGE)
+    console.error(`${OPERATION_FAILED_MESSAGE}. ${error}`)
   }
 }
