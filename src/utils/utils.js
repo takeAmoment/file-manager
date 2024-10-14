@@ -5,8 +5,7 @@ import { changeDirectory, getList, moveUp } from '../navigation/index.js'
 import { readFile, createFile, renameFile, copyFile, moveFile, removeFile } from '../fs/index.js'
 import { provideOSInfo } from '../os/provideOSInfo.js'
 import { calculateHash } from '../hash/calculateHash.js'
-import { compressFile } from '../zlib/compressFile.js'
-import { decompressFile } from '../zlib/decompressFile.js'
+import { compressFile, decompressFile } from '../zlib/index.js'
 
 export const parseCommand = (command) => {
   const commandArr = command.split(' ')

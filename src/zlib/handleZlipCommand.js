@@ -50,7 +50,8 @@ export const handleZlipCommand = async (readFilePath, writeFilePath, gzip) => {
   } catch (error) {
     if (error.code === 'ENOENT') {
       console.error(`${OPERATION_FAILED_MESSAGE}. This file or directory does not exist`)
+    } else {
+      console.error(`${OPERATION_FAILED_MESSAGE}: ${error}`)
     }
-    console.error(`${OPERATION_FAILED_MESSAGE}: ${error}`)
   }
 }
