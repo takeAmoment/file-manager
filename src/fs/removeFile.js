@@ -21,7 +21,7 @@ export const removeFile = async (commandArgs) => {
     rm(fullFilePath)
   } catch (error) {
     if (error.code === 'ENOENT') {
-      console.error(`${OPERATION_FAILED_MESSAGE}.${error}. This file or directory does not exist`);
+      console.error(`${OPERATION_FAILED_MESSAGE}. This file or directory does not exist`);
     } else {
       console.error(`${OPERATION_FAILED_MESSAGE}.${error}`)
     }
